@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Git and GitHub | Coding Cheatsheets</title>
+
+    <link rel="stylesheet" href="../styles/main.css">
+    <style>
+      body {
+        font-family: monospace;
+      }
+    </style>
+  </head>
+  <body>
+
+    <header>
+      Git and GitHub
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+      </ul>
+      <hr>
+    </nav>
+
+    <main>
+      Git workflow <br>
+      <br>
+      - Working Directory <br>
+      - Stageing Area <br>
+      - Repository
+      <hr>
+      Git commands <br>
+      <br>
+      $ git init <br>
+      $ git status <br>
+      $ git add filename <br>
+      $ git diff filename<br>
+      $ git commit -m "Commit message" <br>
+      $ git log <br>
+      <br>
+      <b>Note:</b> If cursor is stuck in git log, press 'q' to escape <br>
+      <br>
+      <a href="https://education.github.com/git-cheat-sheet-education.pdf" target="_blank">GitHub Git Cheatsheet</a> <br>
+      <br>
+      How to backtrack <br>
+      <br>
+      $ git show HEAD <br>
+      $ git checkout HEAD filename <br>
+      <br>
+      $ git add filename_1 filename_2 <br>
+      $ git reset HEAD filename <br>
+      <br>
+      $ git reset commit_SHA (first 7 charters) <br>
+      <br>
+      $ git stash <br>
+      $ git stash pop <br>
+      <br>
+      $ git log --oneline <br>
+      $ git log -S "keyword" <br>
+      $ git log --oneline --graph <br>
+      <br>
+      $ git commit --amend --no-edit <br>
+      <br>
+      Git alias commands <br>
+      <br>
+      $ git config --global alias.co "checkout" <br>
+      $ git config --global alias.br "branch" <br>
+      $ git config --global alias.glop "log --pretty=format:"%h %s" --graph" <br>
+      <br>
+      $ git checkout example_branch <br>
+      $ git co example_branch <br>
+
+      <hr>
+
+      Git and GitHub setup <br>
+      <br>
+      $ git --version <br>
+      <br>
+      $ git config --global user.name "Firstname Lastname" <br>
+      $ git config --global user.name <br>
+      > Firstname Lastname <br>
+      <br>
+      $ gir config user.name "Firstname Lastname" <br>
+      $ git config user.name <br>
+      > Firstname Lastname <br>
+      <br>
+      $ git config --global user.email "mymail@mail.com" <br>
+      $ git config --global user.email <br>
+      > mymail@mail.com <br>
+      <br>
+      <a href="https://docs.github.com/en" target="_blank">GitHub Docs</a> <br>
+      <br>
+      <hr>
+      Try It Out project<br>
+      <br>
+      $ mkdir git_practice <br>
+      $ cd git_practice <br>
+      $ git init <br>
+      $ echo "Hello Git and GitHub" >> README.txt <br>
+      $ git add README.txt <br>
+      $ git commit -m "First commit" <br>
+      <hr>
+      Link Git local repository to the GitHub remote repository <br>
+      <br>
+      - Create new repository on GitHub <br>
+      - Check out HTTPS adress of repository <br>
+      - Next steps in local Command Line Interface <br>
+      <br>
+      $ git remote add origin https://github.com/github_username/repository_name.git <br>
+      $ git push origin branch_name /* main or master */ <br>
+      <hr>
+      The GitHub flow <br>
+      <br>
+      - Create branch <br>
+      - Commit changes <br>
+      - Open pull request <br>
+      - Review pull request <br>
+      - Merge (and delete branch) <br>
+      <hr>
+      Git Branching <br>
+      <br>
+      $ git branch /* list branches */ <br>
+      $ git branch branch_name <br>
+      $ git checkout branch_name <br>
+      $ git merge branch_name <br>
+      $ git branch -d branch_name /* delete the branch */ <br>
+      <br>
+      If merge conflicts appear, fix conflicts and make a new commit with message, type "Resolve merge conflict". <br>
+      <hr>
+      Git teamwork <br>
+      <br>
+      $ git clone remote_location clone_name <br>
+      <br>
+      $ git remote -v <br>
+      <br>
+      $ git fetch <br>
+      $ git merge origin/master <br>
+      <br>
+      $ git push origin branch_name <br>
+      <br>
+      Git workflow <br>
+      <br>
+      1. Fretch and merge changes from remote repository <br>
+      2. Create a branch to work on a new project feature <br>
+      3. Develop the feature on your branch and commit your work <br>
+      4. Fetch and merge from the remote repository again (in case new commits were made while you were working) <br>
+      5. Push your branch up to the remote for review <br>
+      <hr>
+
+    </main>
+
+    <footer>
+      Arvet Palkov 2025
+    </footer>
+  </body>
+</html>
