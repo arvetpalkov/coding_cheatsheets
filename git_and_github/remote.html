@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Git and Github Local Repository | Coding Cheatsheets</title>
+
+    <link href="../styles/main.css" rel="stylesheet">
+    <style>
+      body {
+        font-family: monospace;
+      }
+    </style>
+  </head>
+  <body>
+
+    <header>
+      Git and Github | Local Repository | Remote repository
+    </header>
+
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="git_and_github.html">Git and GitHub</a>
+      <hr>
+    </nav>
+
+    <main>
+      On GitHyb <br>
+      <br>
+      - Create new repository on youe GitHub account <br>
+      - Checkout HTTPS adress of the repository <br>
+      /* https://github.com/github_username/repository_name.git */ <br>
+      <br>
+      - Next Steps in local Command Line Interface <br>
+      - - clone remote to your local <br>
+      - or <br>
+      - - push your local to remote <br>
+      <br>
+      <b>Note:</b> Clone function does automatically remote repository setups. <br>
+      <hr>
+
+      Connect your local repository to remote repository <br>
+      <br>
+      - setup link to remote repository <br>
+      $ git remote add origin HTTPS-adress <br>
+      <br>
+      - view remote repository info <br>
+      $ git remote -v <br>
+      <hr>
+      Push and Pull code <br>
+      <br>
+      - Push your code to remote <br>
+      $ git push origin branch_name <br>
+      <br>
+      - check new commits in remote <br>
+      $ git fetch <br>
+      <br>
+      - update local history to match remote <br>
+      $ git merge origin/master <br>
+
+      <hr>
+      Clone existing remote repository to local computer <br>
+      <br>
+      - Clone repository <br>
+      $ git clone HTTPS-adress <br>
+      <br>
+      - Clone repository and give new name <br>
+      $ git clone HTTPS-adress clone_name <br>
+      <hr>
+
+      The GitHub flow <br>
+      <br>
+      - Create branch <br>
+      - Commit changes <br>
+      - Open pull request <br>
+      - Review pull request <br>
+      - Merge (and delete branch) <br>
+      <hr>
+
+      Remote workflow <br>
+      <br>
+      1. Fretch and merge changes from remote repository <br>
+      2. Create a branch to work on a new project feature <br>
+      3. Develop the feature on your branch and commit your work <br>
+      4. Fetch and merge from the remote repository again (in case new commits were made while you were working) <br>
+      5. Push your branch up to the remote for review <br>
+      <br>
+      
+      <nav>
+        <hr>
+        <a href="basics.html">Basic workflow</a>
+        <br> <br>
+      </nav>
+    </main>
+
+    <footer>
+      Arvet Palkov 2025
+    </footer>
+
+  </body>
+</html>
