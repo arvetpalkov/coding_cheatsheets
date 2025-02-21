@@ -24,6 +24,10 @@ main {
   max-width: 40em;
 }
 
+pre {
+  background-color: #EEE;
+}
+
 .list {
   line-height: 1.8;
 }

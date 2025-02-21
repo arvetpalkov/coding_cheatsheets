@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JavaScript Notes 2</title>
+
+    <link href="../styles/main.css" rel="stylesheet">
+
+  </head>
+  <body>
+
+    <header>
+      JavaScript Notes 2
+    </header>
+
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="javascript.html">JavaScript</a>
+      <a href="js-notes-01.html">Notes 1</a>
+      <hr>
+    </nav>
+
+    <main>
+
+      If statement <br>
+      <br>
+      <pre>
+
+  let condition = true;
+
+  if (condition) {
+    console.log('Condition is true.');
+  }
+  // runs code inside if
+      </pre>
+      <pre>
+
+  let condition = false;
+
+  if (condition) {
+    console.log('Condition is true.');
+  } else {
+    console.log('Condition is false.');
+  }
+  // runs code inside else
+      </pre>
+      <pre>
+
+  let stopLight = 'yellow';
+
+  if (stopLight === 'red') {
+    console.log('Stop!');
+  } else if (stopLight === 'yellow') {
+    console.log('Slow down.');
+  } else if (stopLight === 'green') {
+    console.log('Go!');
+  } else {
+    console.log('Caution, unknown!');
+  }
+      </pre>
+      <hr>
+
+      Comparison Operators <br>
+      <br>
+      < - less than <br>
+      > - greather than <br>
+      <= - less than or equal to <br>
+      >= - greather than or equal to <br>
+      === - is equal to <br>
+      !== - is not equal to <br>
+      <br>
+      10 < 12; // true <br>
+      'apple' === 'apple'; // true <br>
+      'apple' < 'banana'; // true <br>
+      <hr>
+      Logical Operators <br>
+      <br>
+      && - the and operator <br>
+      || - the or operator <br>
+      ! - the not operator, the bang operator <br>
+      <br>
+      true && true; // true <br>
+      false || true; // true <br>
+      !true; // false <br>
+      <hr>
+
+      Truthy and Falsy <br>
+      <br>
+      <pre>
+
+  let age = 14;
+
+  if (age) {
+    console.log(`The age is ${age}.`);
+  } else {
+    console.log('No data about age.');
+  }
+      </pre>
+      Falsy values <br>
+      - 0 <br>
+      - '' or "" - empty string <br>
+      - null <br>
+      - undefined <br>
+      - NaN - Not a Number <br>
+      <hr>
+      Truthy and Falsy Assignment <br>
+      <br>
+      <pre>
+
+  let username = '';
+  let defaultName;
+
+  if (username) {
+    defaultName = username;
+  } else {
+    defaultName = 'Stranger';
+  }
+
+  console.log(defaultName); // Prints: Stranger
+      </pre>
+      <pre>
+
+  let username = '';
+  let defaultName = username || 'Stranger';
+
+  console.log(defaultName); // Prints: Stranger
+      </pre>
+      <hr>
+
+      Ternary Operator <br>
+      <br>
+      <pre>
+
+  let isNightTime = true;
+
+  if (isNightTime) {
+    console.log('Turn on the lights!');
+  } else {
+    console.log('Turn off the lights!');
+  }
+      </pre>
+      <pre>
+
+  isNightTime ? console.log('Turn on the lights!') : console.log('Turn off the lights!');
+      </pre>
+      <hr>
+
+      The switch keyword <br>
+      <br>
+      <pre>
+
+  let groceryItem = 'papaya';
+
+  if (groceryItem === 'tomato') {
+    console.log('Tomatoes are $0.49');
+  } else if (groceryItem === 'papaya'){
+    console.log('Papayas are $1.29');
+  } else {
+    console.log('Invalid item');
+  }
+
+  // Prints 'Papayas are $1.29'
+      </pre>
+      <pre>
+
+  let groceryItem = 'papaya';
+
+  switch (groceryItem) {
+    case 'tomato':
+      console.log('Tomatoes are $0.49');
+      break;
+    case 'lime':
+      console.log('Limes are $1.49');
+      break;
+    case 'papaya':
+      console.log('Papayas are $1.29');
+      break;
+    default:
+      console.log('Invalid item');
+      break;
+  }
+
+  // Prints 'Papayas are $1.29'
+      </pre>
+      <br>
+      <hr>
+
+      <a href="js-notes-01.html">Notes 1</a> <br>
+      <br>
+
+    </main>
+
+    <footer>
+      Arvet Palkov 20025
+    </footer>
+
+  </body>
+</html>
