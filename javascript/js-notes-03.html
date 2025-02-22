@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JavaScript Notes 3</title>
+
+    <link href="../styles/main.css" rel="stylesheet">
+
+  </head>
+  <body>
+
+    <header>
+      JavaScript Notes 3
+    </header>
+
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="javascript.html">JavaScript</a>
+      <a href="js-notes-01.html">Notes 1</a>
+      <a href="js-notes-02.html">Notes 2</a>
+      Notes 3
+      <hr>
+    </nav>
+
+    <main>
+
+      Function Declaration <br>
+      <br>
+      <pre>
+
+  function myFunction() {
+    console.log('Hello!');
+  }
+      </pre>
+      - function keyword <br>
+      - identifier, name of the function <br>
+      - parentheses for parameters, () <br>
+      - function body inside curly brackets, {} <br>
+      <br>
+      Call function <br>
+      <pre>
+
+  myFunction();
+      </pre>
+      Parameters and Arguments <br>
+      <br>
+      Declare function with paramaters: <br> 
+      <pre>
+
+  function calculateArea(width, height) {
+    console.log(width * height);
+  }
+      </pre>
+      Call function with arguments: <br>
+      <pre>
+
+  calculateArea(8, 5);
+      </pre>
+      Variables as argumens: <br>
+      <pre>
+
+  const rectWidth = 8;
+  const rectHeight = 5;
+
+  calculateArea(rectWidth, rectHeight);
+      </pre>
+      Default Parameters <br>
+      <pre>
+
+  function greeting (name = 'stranger') {
+    console.log(`Hello, ${name}!`)
+  }
+  
+  greeting('Nick') // Output: Hello, Nick!
+  greeting() // Output: Hello, stranger!        
+      </pre>
+      Return <br>
+      <pre>
+
+  function calculateArea(width, height) {
+    const area = width * height;
+    return area;
+  }
+      </pre>
+      By default function return value is undefined. <br>
+      <br>
+      There can be multiple return scenarious: <br>
+      <pre>
+
+  function rectangleArea(width, height) {
+    if (width < 0 || height < 0) {
+      return 'You need positive integers to calculate area!';
+    }
+    return width * height;
+  }        
+      </pre>
+      Function expression <br>
+      <pre>
+  
+  const calculateArea = function(width, height) {
+    const area = width * height;
+    return area;
+  }
+      </pre>
+      Arrow Function <br>
+      <pre>
+
+  const rectangleArea = (width, height) => {
+    let area = width * height;
+    return area;
+  };        
+      </pre>
+      Concise Body Arrow Functions <br>
+      <br>
+      A single parameter do not need parentheses <br>
+      <pre>
+  
+  const functionName = () => {};
+
+  const functionName = param1 => {};
+
+  const functionName = (param1, param2) => {};
+      </pre>
+      A single line function body do not need curly brackets and return keyword.<br>
+      The function: <br>
+      <pre>
+
+  const squareNum = (num) => {
+    return num * num;
+  };        
+      </pre>
+      can be writen : <br>
+      <pre>
+
+  const squareNum = num => num * num;
+      </pre>
+
+      <br>
+      <hr>
+
+      <a href="javascript.html">JavaScript</a>
+      <a href="js-notes-01.html">Notes 1</a>
+      <a href="js-notes-02.html">Notes 2</a>
+      Notes 3
+      <br><br>  
+    </main>
+
+    <footer>
+      Arvet Palkov 2025
+    </footer>
+  </body>
+</html>
