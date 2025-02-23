@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JavaScript Notes 4</title>
+
+    <link href="../styles/main.css" rel="stylesheet">
+
+  </head>
+  <bodu>
+
+    <header>
+      JavaScript Notes 4
+    </header>
+
+    <nav>
+      <a href="../index.html">Home</a>
+      Notes
+      <a href="js-notes-01.html">1</a>
+      <a href="js-notes-02.html">2</a>
+      <a href="js-notes-03.html">3</a>
+      4
+      <hr>
+    </nav>
+
+    <main>
+      Arrays <br>
+      <br>
+      <pre>
+
+  const fruits = ['apple', 'banana', 'orange'];
+
+  const mixedArray = ['String', 15, false];
+
+  const emptyArray = [];
+
+  [2, 36, true];    // Anonymous array
+      </pre>
+      Accessing Elements <br>
+      <br>
+      Arrays are zero-indexed. <br>
+      <pre>
+  
+  fruits[0];    // 'apple'
+      </pre>
+      You can also access individual characters in a string using bracket notation and the index. <br>
+      <pre>
+
+  const myString = 'Hello there.';
+
+  myString[4];    // 'o'
+      </pre>
+      Update Elements <br>
+      <br>
+      <pre>
+
+  fruits[2] = 'mango';
+  console.log(fruits);
+  // Output: ['apple', 'banana', 'mango']
+      </pre>
+      The .length property <br>
+      <pre>
+
+  fruits.length;    // return: 3
+      </pre>
+      The .push() Method <br>
+      <br>
+      .push method adds items to the end of an array. <br>
+      <pre>
+
+  fruits.push('kiwi', 'ananas');
+      </pre>
+      The .pop() Method <br>
+      <br>
+      .pop() removes last item of an array. <br>
+      .pop() does not take any arguments. <br>
+      .pop() returns the value of the last element. <br>
+      <pre>
+  
+  const fruits =['apple', 'banana', 'orange'];
+
+  let fruit = fruits.pop();
+
+  console.log(fruit);     // Logs: orange
+  console.log(fruits);    // Logs: ['apple', 'banana']
+      </pre>
+      More Array Methods <br>
+      <br>
+      .join(), .slice(), .splice(), .shift(), .unshift(), .concat() <br>
+      <br>
+      mutating / not mutating metods <br>
+      <br>
+      Nested Arrays <br>
+      <pre>
+
+  const nestedArr = [[1], [2, 3]];
+
+  nestedArr[1];       // [2, 3]
+  nestedArr[1][0];    // 2
+      </pre>
+      <br>
+      <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" target="_blank">Mozilla Array Doc</a> <br>
+
+
+      <br>
+      <hr>
+
+      Notes
+      <a href="js-notes-01.html">1</a>
+      <a href="js-notes-02.html">2</a>
+      <a href="js-notes-03.html">3</a>
+      4
+      <br><br>
+    </main>
+
+    <footer>
+      Arvet Palkov 2025
+    </footer>
+  </bodu>
+</html>
