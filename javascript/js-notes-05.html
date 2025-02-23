@@ -1,0 +1,115 @@
+<!DOCTYPE ntml>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JavaScript Notes 5</title>
+
+    <link href="../styles/main.css" rel="stylesheet">
+
+  </head>
+  <body>
+
+    <header>
+      JavaScript Notes 5
+    </header>
+
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="javascript.html">JavaScript</a>
+      Notes
+      <a href="js-notes-01.html">1</a>
+      <a href="js-notes-02.html">2</a>
+      <a href="js-notes-03.html">3</a>
+      <a href="js-notes-04.html">4</a>
+      5
+      <hr>
+    </nav>
+
+    <main>
+      Loops <br>
+      <br>
+      For loop <br>
+      <pre>
+
+  for (let i = 0; i < 5; i++) {
+    console.log(i);
+  }
+      </pre>
+      For loop in Reverse <br>
+      <pre>
+
+  for (let i = 5; i < 0; i--) {
+    console.log(i);
+  }
+      </pre>
+      for loop iterates an array <br>
+      <pre>
+
+  const pets = ['cat', 'dog', 'fish'];
+
+  for (let i = 0; i < pets.length; i++) {
+    console.log(pets[i]);
+  }
+      </pre>
+      Nested Loops <br>
+      <pre>
+
+  for (let i = 2; i < 5; i++) {
+    for (let j = 4; j < 7; j++) {
+      console.log(`${i} * ${j} = ${i * j}`);
+    }
+  }
+      </pre>
+      The While Loop <br>
+      <pre>
+
+  let counter = 1;
+
+  while (counter < 4) {
+    console.log(counter);
+    counter++;
+  }
+      </pre>
+      Do...While Statements <br>
+      <pre>
+
+  let i = 0;
+
+  do {
+    console.log(i);
+    i++;
+  } while (i < 5);
+      </pre>
+      The break Keyword <br>
+      <br>
+      break exit the loop. <br>
+      <pre>
+
+  for (let i = 0; i < 10; i++) {
+    if (i > 2) {
+      break;
+    }
+    console.log(i);
+  }
+      </pre>
+
+      <br>
+      <hr>
+
+      <a href="javascript.html">JavaScript</a>
+      Notes
+      <a href="js-notes-01.html">1</a>
+      <a href="js-notes-02.html">2</a>
+      <a href="js-notes-03.html">3</a>
+      <a href="js-notes-04.html">4</a>
+      5
+      <br><br>
+    </main>
+
+    <footer>
+      Arvet Palkov 2025
+    </footer>
+
+  </body>
+</html>
