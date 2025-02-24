@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JavaScript Notes 6</title>
+
+    <link href="../styles/main.css" rel="stylesheet">
+
+  </head>
+  <body>
+
+    <header>
+      JavaScript Notes 6
+    </header>
+
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="javascript.html">JavaScript</a>
+      Notes
+      <a href="js-notes-01.html">1</a>
+      <a href="js-notes-02.html">2</a>
+      <a href="js-notes-03.html">3</a>
+      <a href="js-notes-04.html">4</a>
+      <a href="js-notes-05.html">5</a>
+      6
+      <a href="js-notes-07.html">7</a>
+      <hr>
+    </nav>
+
+    <main>
+
+      Function as Data <br>
+      <br>
+      Function is type of data. <br>
+      We can assign function to a variable. <br>
+      <pre>
+
+  const announceThatIAmDoingImportantWork = () => {
+    console.log("I’m doing very important work!");
+  };
+      </pre>
+      We can re-assign function from variable to another variable. <br>
+      <pre>
+
+  const busy = announceThatIAmDoingImportantWork;
+
+  busy(); // This function call barely takes any space!            
+      </pre>
+      Function is type of object. <br>
+      Function have properties like .length and .name and methods like .toString(). <br>
+      <br>
+      <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" target="_blank">Mozilla Function doc</a> <br>
+      <br>
+      Higher order function <br>
+      <br>
+      Higher order function accepts another function as parameter and/or returns a function. <br>
+      <br>
+      We call functions that get passed in as parameters callback functions. Callback functions get invoked during the execution of the higher-order function.<br>
+      <br>
+      <pre>
+
+  const higherOrderFunc = param => {
+    param();
+    return `I just invoked ${param.name} as a callback function!`
+  }
+    
+  const anotherFunc = () => {
+    return 'I\'m being invoked by the higher-order function!';
+  }
+  
+  higherOrderFunc(anotherFunc);        
+      </pre>
+      Higher order function with anonymous function as paramather <br>
+      <pre>
+
+  higherOrderFunc(() => {
+    for (let i = 0; i <= 10; i++){
+      console.log(i);
+    }
+  });        
+      </pre>
+      <hr>
+
+      Iterators <br>
+      <hr>
+
+      .forEach() <br>
+      <br>
+      .forEach() will execute the same code for each element of an array. <br>
+      <pre>
+
+  const groceries = [
+    'fruits',
+    'milk',
+    'bred'
+  ];
+
+  groceries.forEach(function(groceryItem) {
+    console.log( ' - ' + groceryItem);
+  });
+      </pre>
+      <pre>
+
+  groceries.forEach(groceryItem => console.log(groceryItem));
+      </pre>
+      Pre-defined callback function <br>
+      <pre>
+
+  function printGrocery(element){
+    console.log(element);
+  }
+  
+  groceries.forEach(printGrocery);        
+      </pre>
+      return of function is allways undefine. <br>
+      <hr>
+
+      .map() <br>
+      <br>
+      .map() will execute the same code for each element of an array and returns a new array. <br>
+      <pre>
+
+  const numbers = [1, 2, 3, 4, 5]; 
+
+  const bigNumbers = numbers.map(number => {
+    return number * 10;
+  });
+
+  console.log(numbers); 
+    // Output: [1, 2, 3, 4, 5]
+  console.log(bigNumbers); 
+    // Output: [10, 20, 30, 40, 50]
+      </pre>
+      <hr>
+
+      .filter() <br>
+      <br>
+      .filter() iterates the array and run coallback function and returns a new array. If callback function returns true, item will be added to return array. <br>
+      <pre>
+
+  const words = ['chair', 'music', 'pillow', 'brick', 'pen', 'door']; 
+
+  const shortWords = words.filter(word => {
+    return word.length < 6;
+  });
+
+  console.log(words);
+    // Output: ['chair', 'music', 'pillow', 'brick', 'pen', 'door']; 
+  console.log(shortWords);
+    // Output: ['chair', 'music', 'brick', 'pen', 'door']
+      </pre>
+      <hr>
+
+      .findIndex() <br>
+      <br>
+      .findIndex() on an array will return the index of the first element that evaluates to true in the callback function. If no match .findIndex() will return -1.<br>
+      <pre>
+
+  const jumbledNums = [123, 25, 78, 5, 9]; 
+
+  const lessThanTen = jumbledNums.findIndex(num => {
+    return num < 10;
+  });
+
+  console.log(lessThanTen); // Output: 3 
+      </pre>
+      <hr>
+
+      .reduce() <br>
+      <br>
+      The .reduce() method returns a single value after iterating through the elements of an array, thereby reducing the array. <br>
+      <pre>
+
+  const numbers = [1, 2, 4, 10];
+
+  const summedNums = numbers.reduce((accumulator, currentValue) => {
+    return accumulator + currentValue
+  })
+
+  console.log(summedNums) // Output: 17
+      </pre>
+      The .reduce() method can also take an optional second parameter to set an initial value for accumulator. <br>
+      <pre>
+
+  const numbers = [1, 2, 4, 10];
+
+  const summedNums = numbers.reduce((accumulator, currentValue) => {
+    return accumulator + currentValue
+  }, 100)  // <- Second argument for .reduce()
+
+  console.log(summedNums); // Output: 117
+      </pre>
+      <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#Iteration_methods" target="_blank">Moxilla Array doc</a> <br>
+
+      <br>
+      <hr>
+
+      <a href="../index.html">Home</a>
+      <a href="javascript.html">JavaScript</a>
+      Notes
+      <a href="js-notes-01.html">1</a>
+      <a href="js-notes-02.html">2</a>
+      <a href="js-notes-03.html">3</a>
+      <a href="js-notes-04.html">4</a>
+      <a href="js-notes-05.html">5</a>
+      6
+      <a href="js-notes-07.html">7</a>
+      <br><br>
+
+    </main>
+
+    <footer>
+      Arvet Palkov 2025
+    </footer>
+
+  </body>
+</html>
