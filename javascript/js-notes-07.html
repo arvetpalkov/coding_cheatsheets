@@ -223,6 +223,198 @@
       </pre>
       <hr>
 
+      The this Keyword <br>
+      <br>
+      This keyword is used to access to object's own propertys. <br>
+      <pre>
+
+  const goat = {
+    dietType: 'herbivore',
+    makeSound() {
+      console.log('baaa');
+    },
+    diet() {
+      console.log(this.dietType);
+    }
+  };
+  
+  goat.diet(); 
+  // Output: herbivore        
+      </pre>
+      Arrow function and this <br>
+      <br>
+      Do not use arrow function as method. There is issues with scope and this keyword does not work like we usually expect. This keyword point to object's parent parent (global) object. <br>
+      <br>
+      Privacy <br>
+      <br>
+      JavaScript does not have privacy built-in for objects. <br>
+      JavaScript developers follow naming conventions that signal to other developers how to interact with a property.One common convention is t oplace an underscore _ before the name of a property to mean that the property should not be altered. <br>
+      <pre>
+
+  const bankAccount = {
+    _amount: 1000
+  }        
+      </pre>
+      Getters <br>
+      <br>
+      Getters are methods that get and return the internal properties of an object. But they can do more than just retrieve the value of a property! <br>
+      <pre>
+
+  const person = {
+    _firstName: 'John',
+    _lastName: 'Doe',
+    get fullName() {
+      if (this._firstName && this._lastName){
+        return `${this._firstName} ${this._lastName}`;
+      } else {
+        return 'Missing a first name or a last name.';
+      }
+    }
+  }
+  
+  // To call the getter method: 
+  person.fullName; // 'John Doe'        
+      </pre>
+      Syntactically, it looks like we’re accessing a property.<br>
+      <br>
+      Setters <br>
+      <br>
+      We can create setter methods which reassign values of existing properties within an object. <br>
+      <pre>
+
+  const person = {
+    _age: 37,
+    set age(newAge){
+      if (typeof newAge === 'number'){
+        this._age = newAge;
+      } else {
+        console.log('You must assign a number to age');
+      }
+    }
+  };       
+  
+  person.age = 40;
+  console.log(person._age); // Logs: 40
+  person.age = '40'; // Logs: You must assign a number to age
+      </pre>
+      Syntactically, it looks like we’re reassigning the value of a property.<br>
+      <br>
+      Using setter methods has advantages that include checking input, performing actions on properties, and displaying a clear intention for how the object is supposed to be used.<br>
+      <hr>
+
+      Factory Function <br>
+      <br>
+      A factory function is a function that returns an object and can be reused to make multiple object instances. Factory functions can also have parameters allowing us to customize the object that gets returned. <br>
+      <pre>
+
+  const monsterFactory = (name, age, energySource, catchPhrase) => {
+    return { 
+      name: name,
+      age: age, 
+      energySource: energySource,
+      scare() {
+        console.log(catchPhrase);
+      } 
+    }
+  };        
+      </pre>
+      Create object with factory function: <br>
+      <pre>
+
+  const ghost = monsterFactory('Ghouly', 251, 'ectoplasm', 'BOO!');
+  ghost.scare(); // 'BOO!'
+      </pre>
+      <br>
+      Property Value Shorthand <br>
+      <br>
+      factory function: <br>
+      <pre>
+
+  const monsterFactory = (name, age) => {
+    return { 
+      name: name,
+      age: age
+    }
+  };        
+      </pre>
+      If parameter names are same as porperty names, we can use property value shorthand <br>
+      <pre>
+
+  const monsterFactory = (name, age) => {
+    return { 
+      name,
+      age 
+    }
+  };        
+      </pre>
+      <br>
+      Destructured Assignment <br>
+      <br>
+      Example object <br>
+      <pre>
+
+  const vampire = {
+    name: 'Dracula',
+    residence: 'Transylvania',
+    preferences: {
+      day: 'stay inside',
+      night: 'satisfy appetite'
+    }
+  };        
+      </pre>
+      Save residence property into residence variable <br>
+      <pre>
+
+  const residence = vampire.residence; 
+  console.log(residence); // Prints 'Transylvania' 
+      </pre>
+      destructuring technique called destructured assignment <br>
+      <pre>
+
+  const { residence } = vampire; 
+  console.log(residence); // Prints 'Transylvania'
+      </pre>
+      We can even use destructured assignment to grab nested properties of an object: <br>
+      <pre>
+
+  const { day } = vampire.preferences; 
+  console.log(day); // Prints 'stay inside'
+      </pre>
+      <hr>
+
+      Built-in Object Metods <br>
+      <br>
+      .hasOwnProperty(), .valueOf(), ... <br>
+      <br>
+      <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object#Methods" target="_blank">Mozilla Object doc</a> <br>
+      <br>
+      Object.assign(), Object.entries(), Object.keys() <br>
+      <pre>
+  const robot = {
+    model: 'SAL-1000',
+    mobile: true,
+    sentient: false,
+    armor: 'Steel-plated',
+    energyLevel: 75
+  };
+  
+  // What is missing in the following method call?
+  const robotKeys = Object.keys(robot);
+  
+  console.log(robotKeys);
+  
+  // Declare robotEntries below this line:
+  const robotEntries = Object.entries(robot);
+  
+  console.log(robotEntries);
+  
+  // Declare newRobot below this line:
+  const newRobot = Object.assign({}, robot, {laserBlaster: true, voiceRecognition: true});
+  
+  console.log(newRobot);
+      </pre>
+
+
       <br>
       <hr>
 
