@@ -11,7 +11,7 @@
   <body>
 
     <header>
-      JavaScript Notes 8
+      JavaScript Classes
     </header>
 
     <nav>
@@ -29,6 +29,291 @@
     </nav>
 
     <main>
+
+      Classes <br>
+      <br>
+      Classes are templates for Objects. <br>
+      <br>
+      an object: <br>
+      <pre>
+
+  let halley = {
+    _name: 'Halley',
+    _behavior: 0,
+    
+    get name() {
+      return this._name;
+    },
+    
+    get behavior() {
+      return this._behavior;
+    },
+      
+    incrementBehavior() {
+      this._behavior++;
+    }
+  }        
+      </pre>
+      Constructor <br>
+      <pre>
+
+  class Dog {
+    constructor(name) {
+      this.name = name;
+      this.behavior = 0;
+    }
+  }        
+      </pre>
+      By convention, we capitalize and PascalCase class names. <br>
+      <br>
+      Instance <br>
+      <br>
+      Create new instance of class Dog <br>
+      <pre>
+
+  class Dog {
+    constructor(name) {
+      this.name = name;
+      this.behavior = 0;
+    } 
+  }
+  
+  const halley = new Dog('Halley'); // Create new Dog instance
+  console.log(halley.name); // Log the name value saved to halley
+  // Output: 'Halley'        
+      </pre>
+      Methods <br>
+      <br>
+      Getters, Setters and other Methods <br>
+      <br>
+      no commas between methods <br>
+      <pre>
+
+  class Dog {
+    constructor(name) {
+      this._name = name;
+      this._behavior = 0;
+    }
+      
+    get name() {
+      return this._name;
+    }
+    
+    get behavior() {
+      return this._behavior;
+    }
+    
+    incrementBehavior() {
+      this._behavior++;
+    }
+  }        
+      </pre>
+      Method Calls <br>
+      <br>
+      <pre>
+
+  class Dog {
+    constructor(name) {
+      this._name = name;
+      this._behavior = 0;
+    }
+      
+    get name() {
+      return this._name;
+    }
+    
+    get behavior() {
+      return this._behavior;
+    }   
+    
+    incrementBehavior() {
+      this._behavior++;
+    }
+  }
+  
+  const halley = new Dog('Halley');        
+      </pre>
+      <pre>
+
+  let nikko = new Dog('Nikko'); // Create dog named Nikko
+  nikko.incrementBehavior(); // Add 1 to nikko instance's behavior
+
+  let bradford = new Dog('Bradford'); // Create dog name Bradford
+
+  console.log(nikko.behavior); // Logs 1 to the console
+  console.log(bradford.behavior); // Logs 0 to the console  
+      </pre>
+      <hr>
+
+      Inheritance <br>
+      <br>
+      class Dog: <br>
+      <pre>
+
+  class Dog {
+    constructor(name) {
+      this._name = name;
+      this._behavior = 0;
+    }
+      
+    get name() {
+      return this._name;
+    }
+    
+    get behavior() {
+      return this._behavior;
+    }   
+    
+    incrementBehavior() {
+      this._behavior++;
+    }
+  }        
+      </pre>
+      class Cat: <br>
+      <pre>
+
+  class Cat {
+    constructor(name, usesLitter) {
+      this._name = name;
+      this._usesLitter = usesLitter;
+      this._behavior = 0;
+    }
+      
+    get name() {
+      return this._name;
+    }
+    
+    get usesLitter() {
+      return this._usesLitter;
+    }
+  
+    get behavior() {
+      return this._behavior;
+    }  
+    
+    incrementBehavior() {
+      this._behavior++;
+    }
+  }        
+      </pre>
+      Both classes share couple of properties and methods. <br>
+      <br>
+      We can create paren class Animal: <br>
+      <pre>
+
+  class Animal {
+    constructor(name) {
+      this._name = name;
+      this._behavior = 0;
+    }
+      
+    get name() {
+      return this._name;
+    }
+    
+    get behavior() {
+      return this._behavior;
+    }   
+      
+    incrementBehavior() {
+      this._behavior++;
+    }
+  }         
+      </pre>
+      When parent class is created, child classes inherit information from paren class. <br>
+      <pre>
+        
+  class Cat extends Animal {
+    constructor(name, usesLitter) {
+      super(name);
+      this._usesLitter = usesLitter;
+    }
+  }        
+      </pre>
+      The extends keyword makes the methods of the animal class available inside the cat class. <br>
+      <br>
+      The super keyword calls the constructor of the parent class. In this case, super(name) passes the name argument of the Cat class to the constructor of the Animal class.<br>
+      <br>
+      Call super() must be on the first line of the . <br>
+      <pre>
+
+  class Animal {
+    constructor(name) {
+      this._name = name;
+      this._behavior = 0;
+    }
+      
+    get name() {
+      return this._name;
+    }
+    
+    get behavior() {
+      return this._behavior;
+    }
+    
+    incrementBehavior() {
+      this._behavior++;
+    }
+  } 
+  
+  
+  class Cat extends Animal {
+    constructor(name, usesLitter) {
+      super(name);
+      this._usesLitter = usesLitter;
+    }
+  }
+  
+  const bryceCat = new Cat('Bryce', false);
+      </pre>
+      <pre>
+          
+  bryceCat.incrementBehavior(); // Call .incrementBehavior() on Cat instance 
+  console.log(bryceCat.behavior); // Log value saved to behavior
+      </pre>
+      <pre>
+
+  class Cat extends Animal {
+    constructor(name, usesLitter) {
+      super(name);
+      this._usesLitter = usesLitter;
+    }
+      
+    get usesLitter() {
+      return this._usesLitter;
+    }
+  }        
+      </pre>
+      class Dog <br>
+      <pre>
+
+  class Dog extends Animal {
+    constructor(name) {
+      super(name);
+    }
+  }        
+      </pre>
+      Static Methods <br>
+      <br>
+      <pre>
+
+  class Animal {
+    constructor(name) {
+      this._name = name;
+      this._behavior = 0;
+    }
+      
+    static generateName() {
+      const names = ['Angel', 'Spike', 'Buffy', 'Willow', 'Tara'];
+      const randomNumber = Math.floor(Math.random()*5);
+      return names[randomNumber];
+    }
+  }
+      </pre>
+      <pre>
+
+  console.log(Animal.generateName()); // returns a name
+      </pre>
 
       <br>
       <hr>
