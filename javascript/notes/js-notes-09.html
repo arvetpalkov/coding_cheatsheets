@@ -11,7 +11,7 @@
   <body>
 
     <header>
-      JavaScript Notes 9
+      JavaScript Modules
     </header>
 
     <nav>
@@ -29,6 +29,194 @@
     </nav>
 
     <main>
+
+      A Browser's Runtime Environment <br>
+      (Front-End) <br>
+      <br>
+      <pre>
+
+  window.alert('Message');
+  window.prompt('Message');
+  window.confirm('Message');
+      </pre>
+      <hr>
+
+      The Node Runtime Environment <br>
+      (Back-End) <br>
+      <br>
+      To execute JavaSctipt witout bowser, Node must be installed on the computer. <br>
+      <br>
+      For example, suppose you created a file called my-app.js. We can check to see the directory that this file is located in using the Node runtime environment variable process: <br>
+      <pre>
+
+  // my-app.js
+  console.log(process.env.PWD);
+      </pre>
+      <b>process</b> is an object containing data relating to the JavaScript file being executed. <br>
+      <b>process.env</b> is an object containing environment variables such as <br>
+      <b>process.env.PWD</b> which contains the current working directory (and stands for “Print Working Directory”). <br>
+      <br>
+      To execute 'my-app.js', in Command Line Interface (CLI) run command: <br>
+      <pre>
+
+  $ node my-app.js
+      </pre>
+      The node command tells your computer to execute the my-app.js file in the Node environment. You can also use the node command without a file argument to open up the Node Read-Eval-Print-Loop (REPL): <br>
+      <pre>
+
+  $ node
+  > process.env.HOME
+  '/home/ccuser'
+      </pre>
+      To exit Node REPL run command: <br>
+      <pre>
+
+  > .exit
+      </pre>
+      <hr>
+
+      JavaScript Runtime Environment Summary <br>
+      <br>
+      JavaScript code may be executed in one of two runtime environments: <br>
+      1. a browser's runtime environment <br>
+      2. the Node runtime envronment <br>
+      <br>
+      In each of these environments, different data values and functions are available. <br>
+      - Front-end JavaScript applications ae executed in a browser's runtime enviroment and have access to the window object. <br>
+      - Back-end JavaScript applications are executed in the Node runtime environment and have access to the file system, databases, and networks attached to the server. <br>
+      <hr>
+
+      Modules <br>
+      <br>
+      Node.js vs ES6 <br>
+      <br>
+      There are multiple ways of implementing modules depending on the runtime environment in which the code is executed. <br>
+      1. The Node runtimeenvironment and the <i>module.exports</i> and <i>require()</i> syntax. <br>
+      2. The browser's runtime environment and the ES6 <i>import</i>/<i>export</i> syntax. <br>
+      <hr>
+
+      Implementing Modules in Node <br>
+      <br>
+      Example: <br>
+      <br>
+      - We know water freezing and boiling temperatures in Celsius. <br>
+      - We know how to convert Celsius to Fahrenheit. <br>
+      - We write program that shows water freezing and boiling temperatures in Fahrenheit. <br>
+      <pre>
+
+  /* water-limits.js */
+
+  function celsiusToFahrenheit(celsius) {
+    return celsius * (9/5) + 32;
+  }
+
+  const freezingPointC = 0;
+  const boilingPointC = 100;
+
+  const freezingPointF = celsiusToFahrenheit(freezingPointC);
+  const boilingPointF = celsiusToFahrenheit(boilingPointC);
+
+  console.log(`The freezing point of water in Fahrenheit is ${freezingPointF}`);
+  console.log(`The boiling point of water in Fahrenheit is ${boilingPointF}`);
+      </pre>
+      Executing this file using Node would look something like this: <br>
+      <pre>
+
+  $ node water-limits.js
+  The freezing point of water in Fahrenheit is 32
+  The boiling point of water in Fahrenheit is 212
+      </pre>
+      We want the program: <br>
+      - user can input temperature in celsius <br>
+      - the program restonds with temperature in Fahrenheit <br>
+      <br>
+      We want the command and response looks like this: <br>
+      <pre>
+
+  $ node celsius-to-fahrenheit.js 100
+  100 degrees Celsius = 212 degrees Fahrenheit
+      </pre>
+      We write program: <br>
+      <pre>
+
+  /* celsius-to-fahrenheit.js */
+
+  function celsiusToFahrenheit(celsius) {
+    return celsius * (9/5) +32;
+  }
+
+  const celsusInput = process.argv[2]; // Get the 3rd input from the argument list
+  const fahrenheitValue = celsiusToFahrenheit(celsiusInput);
+
+  console.log(`${celsiusInput} degrees Celsius = €{fahrenheitValue} degrees Fahrenheit`);
+      </pre>
+      In the Node envirenment <i>process.argv</i> is an array holding the arguments provided. In this case it looks like <i>['node', 'celsius-to-fahrenheit.js', '100']</i>. So, <i>process.argv[2]</i> returns <i>'100'</i>. <br>
+      <br>
+      Now we have two programs and both implement the same function <i>celsiusToFahrenheit()</i>. <br>
+      <br>
+      Good practice is to not repeat the same code. <br>
+      <br>
+      Let's create module that exports a <i>celsiusToFahrenheit()</i> function that both programs can use an we eliminate repetitive code. <br>
+      <br>
+      The file contains our functions and exports functionality to use in other files: <br>
+      <pre>
+
+  /* converters.js */
+
+  function celsiusToFahrenheit(celsius) {
+    return celsius * (9/5) + 32;
+  }
+
+  module.exports.celsiusToFahrenheit = celsiusToFahrenheit;
+
+  module.exports.fahrenheitToCelsius = function(fahrenheit) {
+    return (fahrenheit - 32) * (5/9);
+  }
+      </pre>
+      The code demonstrates two ways of exporting functions from a module. <br>
+      <br>
+      <i>module.exports</i> is an object that is built-in to the Node.js runtime environment. Other files can import this object, and make use of these two functions, with another feature that is built-in to the Node.js runtime environment: the <i>require()</i> function. <br>
+      <br>
+      require() <br>
+      <br>
+      The <i>require()</i> fuction accepts a string as an argument. That string provides the file path to the module you would like to import. <br>
+      <br>
+      Let's modify water-limits.js with <i>require()</i> funcrion to use functions fron other module. <br>
+      <pre>
+
+  /* water-limits.js */
+
+  const converters = require('./converters.js');
+
+  const freezingPointC = 0;
+  const boilingPointC = 100;
+
+  const freezingPointF = converters.celsiusToFahrenheit(freezingPointC);
+  const boilingPointF = converters.celsiusToFahrenheit(boilingPointC);
+
+  console.log(`The freezing point of water in Fahrenheit is ${freezingPointF}`);
+  console.log(`The boiling point of water in Fahrenheit is ${boilingPointF}`);
+      </pre>
+      In the file path string <i>./</i> means, that converters.js is located in the same folder as water-limits.js.  <br>
+      <br>
+      When you use <i>require()</i>, the entire <i>module-exports</i> object is returned and stored in the variable. This means that all methods can be used in this program. <br>
+      <br>
+      Using Object Destructing to be more Selective With <i>require()</i> <br>
+      <br>
+      In many cases, modules will export a large number of functions but only one or two of them are needed. You can use object deconstructing to extract only the needed function. <br>
+      <br>
+      Let's update celsius-to-fahrenheit.js and only extract the <i>.celsiusToFarenheit()</i> method.
+      <pre>
+
+  /* celsius-to-fahrenheit.js */
+
+  const { celsiusToFahrenheit } = require('./converters.js');
+
+  const celsiusInput = process.argv[2];
+  const fahrenheitValue = celsiusToFahrenheit(celsiusInput);
+
+  console.log(`${celsiusInput} degrees Celsius = ${fahrenheitValue} degrees Fahtrnheit`);
+      </pre>
 
       <br>
       <hr>
