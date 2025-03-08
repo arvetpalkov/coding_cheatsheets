@@ -11,7 +11,7 @@
   <body>
 
     <header>
-      JavaScript Notes 10
+      JavaScript Modules in Bpowser
     </header>
 
     <nav>
@@ -29,6 +29,322 @@
     </nav>
 
     <main>
+
+      Implementinng Modules in the Browser <br>
+      <br>
+      Example: <br>
+      <br>
+      We want to build a simple web application with some hidden text that is revealed when a button is pressed. <br>
+      <br>
+      - create folder <i>secret-messages/</i> <br>
+      - in the folder create two files, <i>secret-messages.html</i> and <i>secret-messages.js</i> <br>
+      <pre>
+
+  secret-messages/
+  |-- secret-messages.html
+  |-- secret-messages.js
+      </pre>
+      secret-message.html: <br>
+      <pre>
+
+  &lt!-- secret-messages.html -->
+
+  &lthtml>
+    &lthead>
+      &lttitle>Secret Messages&lt/title>
+    &lt/head>
+    &ltbody>
+      &ltbutton id="secret-button"> Press me... if you dare &lt/button>
+      &ltp id="secret-p" style="display: none"> Modules are fancy! &lt/p>
+      &ltscript src="./secret-messages.js"> &lt/script>
+    &lt/body>
+  &lt/html>
+      </pre>
+      secet-message.js: <br>
+      <pre>
+
+  /* secret-message.js */
+
+  const buttonElement = document.getElementById('secret-button');
+  const pElement = document.getElementById('secret-p');
+
+  const toggleHiddenElement = (domElement) => {
+    if (domElement.style.display === 'none') {
+      domElement.style.display = 'block';
+    } else {
+      domElement.style.display = 'none';
+    }
+  }
+
+  buttonElement.addEventListener('click', () => {
+    toggleHiddenElement(pElement);
+  });
+      </pre>
+      Now let's create similar web site with hidden image. <br>
+      <br>
+      File system: <br>
+      <pre>
+  secret-image/
+  |-- secret-image.html
+  |-- secret-image.js
+      </pre>
+      secret-image.html: <br>
+      <pre>
+
+  &lt!-- secret-image.html -->
+
+  &lthtml>
+    &lthead>
+      &lttitle>Secret Image&lt/title>
+    &lt/head>
+    &ltbody>
+      &ltbutton id="secret-button"> Want to see something cool? &lt/button>
+      &ltimg id="secret-image" src="imageURL.jpg" style="display: none">
+      &ltscript src="./secret-image.js"> &lt/script>
+    &lt/body>
+  &lt/html>
+      </pre>
+      secret-images.js <br>
+      <pre>
+
+  /* secret-image.js */
+
+  const buttonElement = document.getElementById('secret-button');
+  const imgElement = document.getElementById('secret-img');
+
+  const toggleHiddenElement = (domElement) => {
+    if (domElement.style.display === 'none') {
+      domElement.style.display = 'block';
+    } else {
+      domElement.style.display = 'none';
+    }
+  }
+
+  buttonElement.addEventListener('click', () => {
+    toggleHiddenElement(imgElement);
+  });
+      </pre>
+      Both programs contain the same function <i>toggleHiddenElement(domElement)</i>. <br>
+      Let's separate this function to it's own module that both projects can import the functionality. <br>
+      <br>
+      New file system: <br>
+      <pre>
+
+  secret-image/
+  |-- secret-image.html
+  |-- secret-image.js
+  secret-messages/
+  |-- secret-messages.html
+  |-- secret-messages.js
+  modules/
+  |-- dom-functions.js
+      </pre>
+      New <i>modules/dom-functions.js</i> file: <br>
+      <pre>
+
+  /* dom-functions.js */
+
+  const toggleHiddenElement = (domElement) => {
+    if (domElement.style.display === 'none') {
+      domElement.style.display = 'block';
+    } else {
+      domElement.style.display = 'none';
+    }
+  }
+
+  const changeToFunkyColor = (domElement) => {
+    const r = Math.random() * 255;
+    const g = Math.random() * 255;
+    const b = Math.random() * 255;
+
+    domElement.style.background = `rgb(${r}, ${g}, ${b})`;
+  }
+
+  export { toggleHiddenElement, changeToFunkyColor };
+      </pre>
+      Other way to export individual values is to place <i>export</i> keyword in front of the variable's declaration. <br>
+      <pre>
+
+  /* dom-functions.js */
+
+  export const toggleHiddenElement = (domElement) => {
+    if (domElement.style.display === 'none') {
+      domElement.style.display = 'block';
+    } else {
+      domElement.style.display = 'none';
+    }
+  }
+
+  export const changeToFunkyColor = (domElement) => {
+    const r = Math.random() * 255;
+    const g = Math.random() * 255;
+    const b = Math.random() * 255;
+
+    domElement.style.background = `rgb(${r}, ${g}, ${b})`;
+  }
+      </pre>
+      Import functions from outher module to <i>secret-messages.js</i> <br>
+      <pre>
+
+  /* secret-messages.js */
+
+  import { toggleHiddenElement, changeToFuncyColor } from '../modules/dom-functions.js';
+
+  const buttonElement = document.getElementById('secret-button');
+  const pElement = document.getElementById('secret-p');
+
+  buttonElement.addEventListener('click', () => {
+    toggleHiddenElement(pElement);
+    changeToFunkyColor(buttonElement);
+  });
+      </pre>
+      To use modules, http file script must contain <i>type="module"</i> attribute. <br>
+      secret-messages.html <br>
+      <pre>
+
+  &lt!-- secret-messages.html -->
+
+  &lthtml>
+    &lthead>
+      &lttitle>Secret Messages&lt/title>
+    &lt/head>
+    &ltbody>
+      &ltbutton id="secret-button"> Press me... if you dare &lt/button>
+      &ltp id="secret-p" style="display: none"> Modules are fancy! &lt/p>
+      &ltscript type="module" src="./secret-messages.js"> &lt/script>
+    &lt/body>
+  &lt/html>
+      </pre>
+      <br>
+      Renaming Imports to Avoid Naming Collisions <br>
+      <br>
+      We have two modules, greeterEspanol.js and greeterFrancais.js <br>
+      <pre>
+
+  /* greeterEspanol.js */
+
+  const greet = () => {
+    console.log('hola');
+  }
+
+  export { greet };
+      </pre>
+      <pre>
+
+  /* greeterFrancais.js */
+
+  const greet = () => {
+    console.log('bonjour');
+  }
+
+  export { greet };
+      </pre>
+      When imported functions has same name, we rename them to separate: <br>
+      <pre>
+
+  /* main.js */
+
+  import { greet as greetEspanol } from 'greeterEspanol.js';
+  import { greet as greetFrancais } from 'greetFrancais.js';
+
+  greetEspanol();   // Prints: hola
+  greetFrancais();  // Prints: bonjour
+      </pre>
+      <br>
+      Default Exports and Imports <br>
+      <br>
+      Every module also has the option to export a single value to represent the entire module called the <i>default export</i>. Often the default export value is an object containing the entire set of functions and/or  data values of a module. <br>
+      <br>
+      The syntax for exporting a default object looks like this: <br>
+      <pre>
+
+  const resources = {
+    valueA,
+    valueB
+  }
+  export { resources as default };
+      </pre>
+      <i>default</i> identifier is reserved and can only be given to a single exported value. In this example <i>resources</i> object is exported as named <i>default</i>. <br>
+      <br>
+      Shorthand syntax to <i>export default</i> is: <br>
+      <pre>
+
+  const resources = {
+    valueA,
+    valueB
+  }
+  export default resources;
+      </pre>
+      <br>
+      Importing default values <br>
+      <br>
+      The syntax for importing default exports: <br>
+      <pre>
+
+  import importedResources from 'module.js';
+      </pre>
+      This syntax is shorthand for: <br>
+      <pre>
+
+  import { default as importedResources } from 'module.js';
+      </pre>
+      <b>Note!</b> If the default export is an object, the values inside cannot be extracted until after the object is imported. <br>
+      <pre>
+
+  // This will work...
+  import resources from 'module.js';
+  const { valueA, valueB } = resources;
+
+  // This will not work...
+  import { valueA, valueB } from 'module.js';
+      </pre>
+      Let's return to the prior examle. The dom-functions.js module could be rewritten to use default export like so: <br>
+      <pre>
+
+  /* dom-functions.js */
+
+  const toggleHiddenElement = (domElement) => {
+    if (domElement.style.display === 'none') {
+      domElement.style.display = 'block';
+    } else {
+      domElement.style.display = 'none';
+    }
+  }
+
+  const shangeTo FunkyColor = (domElement) => {
+    const r = Math.random() * 255;
+    const g = Math.random() * 255;
+    const b = Math.random() * 255;
+
+    domElement.style.background = `rgb(${r}, ${g}, ${b})`;
+  }
+
+  const resources = {
+    toggleHiddenElement,
+    changeToFunkyColor
+  }
+  export default resources;
+      </pre>
+      This default exports object can be used within secret-message.js like so: <br>
+      <pre>
+
+  /* secret-message.js */
+
+  import domFunctions from '../modules/dom-functions.js';
+
+  const { toggleHiddenElement, changeToFunkyColor } = domFunctions;
+
+  const buttonElement = document.getElementById('secret-button');
+  const pElement = document.getElementById('secret-p');
+
+  buttonElement.addEventListener('click', () => {
+    toggleHiddenElement(pElement);
+    changeToFunkyColor(buttonElement);
+  })
+      </pre>
+      <br>
+      <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules" target="_blank">Mozilla JavaScript Modules doc</a> <br>
+
 
       <br>
       <hr>
