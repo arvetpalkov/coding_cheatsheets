@@ -11,7 +11,7 @@
   <body>
 
     <header>
-      JavaScript Notes 11
+      JavaScript Promises
     </header>
 
     <nav>
@@ -29,6 +29,234 @@
     </nav>
 
     <main>
+
+      Asynchronous programming <br>
+      <br>
+      Promise object <br>
+      <br>
+      Promises are objects that represent the eventual outcome of an asynchronous operation. <br>
+      <br>
+      A Promise object can be in one of three states: <br>
+      - Pending: The initial state - the operation has not completed yet. <br>
+      - Fulfilled: The operation has completed successfully and the promise now has a resolved value. For example, a request's promise might resolve with a JSON object as its value. <br>
+      - Rejected: The operation has failed and the promise has a reason for the failure. This reason is usually an Error of some kind. <br>
+      <hr>
+
+      Constructing a Promise Object <br>
+      <br>
+      To create a new Promise object, we use the <i>new</i> keyword and the <i>Promise</i> constructor method: <br>
+      <pre>
+
+  const executorFunction = (resolve, reject) => { };
+
+  const myPromise = new Promise(executorFunction);
+      </pre>
+      The <i>Promise</i> constructor method takes a function parameter called the <i>executor function</i> which runs automatically when the constructor is called. The executor function generally starts an asynchronous operation and dictates how the promise should be settled. <br>
+      <br>
+      The <i>executor function</i> has two function parameters, usually referred to as the <i>resolve()</i> and <i>reject()</i> functions. The <i>resolve()</i> and <i>reject()</i> functions are built in JavaScript and aren't defined by the programmer. <br>
+      <br>
+      - <i>resolve()</i> is a function with one argument. <i>resolve()</i> will change the promise's status from <i>pending</i> to <i>fulfilled</i>, and promise's resolve value will be set to the argument passed into <i>resolve()</i>. <br>
+      <br>
+      - <i>reject()</i> is a function that takes a reason or error as an argument. <i>reject()</i> will change the promise's status from <i>pending</i> to <i>rejected</i>, and the promise's rejection reason will be set to the argument passed into <i>reject()</i>. <br>
+      <pre>
+
+  const executorFunction = (resolve, reject) => {
+    if (someCondition) {
+      resolve('I resolved!');
+    } else {
+      reject('I rejectected!');
+    }
+  }
+
+  const myPromise = new Promise(executorFunction);
+      </pre>
+      <hr>
+
+      The setTimeout() Function <br>
+      <br>
+      <i>setTimeout()</i> is a Node API (a compartable API is provided by web browsers) that uses callback functions to schedule tasks to be performed after a delay.  <br>
+      <br>
+      <i>setTimeout()</i> has two parameters: a callback function and a delay in milliseconds. <br>
+      <pre>
+
+  const delayedHello = () => {
+    console.log('Hi! This is an asynchronous greeting!');
+  }
+
+  setTimeout(delayedHello, 2000);
+      </pre>
+      Let's construct asynchronous promise using <i>setTimeout()</i>: <br>
+      <pre>
+
+  const returnPromiseFunction = () => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {resolve('I resolved!')}, 1000);
+    });
+  };
+
+  const prom = returnPromiseFunction();
+      </pre>
+      <hr>
+
+      Promise object .then() method <br>
+      <br>
+      <i>.then()</i> is higher-order function - it takes two callback functions as argument. We refer to these callbacks as handlers. When the promise settles, appropriate handler will be invoked with that settled value. <br>
+      <br>
+      - The first handler, sometimes called <i>onFulfilled</i>, is a <i>success handler</i>, and it should contain the logic for the promise resolving. <br>
+      <br>
+      - The second handler, sometimes called <i>onRejected</i>, is a <i>failure handler</i>, and it should contain the logic for the promise rejecting. <br>
+      <br>
+      We can invoke <i>.then()</i> with one, both, or neither handler. This allows for flexibility, but it can also make for tricky debuging. If the appropriate handler is not provided, instead of throwing an error, <i>.then()</i> will just return a promise with the same settled value as the promise it was called on. One important feature of <i>.then()</i> is that it always returns a promise. <br>
+      <br>
+      Success and Failure Callback Functions <br>
+      <br>
+      To handle a "successfull" promise, or a promise that resolved, we invoke <i>.then()</i> on the promise, passing in a success handler callback function: <br>
+      <pre>
+
+  const prom = new Promise((resolve, reject) => {
+    resolve('Yay!');
+  });
+
+  const handleSuccess = (resolveValue) => {
+    console.log(resolveValue);
+  };
+
+  prom.then(handleSuccess);
+      </pre>
+      With typical promise consumption, we won't know whether a promise will resolve or reject, so we'll need to providethe logic for either case. <br>
+      <br>
+      We can pass both a success callback and failure callback to <i>.then()</i>: <br>
+      <pre>
+
+  let prom = new Promise((resolve, reject) => {
+    let num = Math.random();
+
+    if (num < 0.5) {
+      resolve('Yay!');
+    } else {
+      reject('Ohhh noooo!');
+    }
+  });
+
+  const handleSuccess = (resolvedValue) => {
+    console.log(resolvedValue);
+  };
+
+  const handleFailure = (rejectionReason) => {
+    console.log(rejectionReason);
+  };
+
+  prom.then(handleSuccess, handleFailure);
+      </pre>
+      Using .catch() with Promises <br>
+      <br>
+      One way to write cleaner code is to follow a principle called <i>separation of concerns</i>. Separation of concerns means organizing code into district sections each handling a specific task. It enables us to quikly navigate our code and know where to look if something isn't working. <br>
+      <br>
+      Remember, <i>.then</i> will return a promise with the same settlled value as the promise it was called on if no appropriate handler was provided. This implementation allows us to separate our resolved logic fron our rejected logic. Instead of passing both handlers into one <i>.then()</i>, we can chain a second <i>.then()</i> with a failure handler to a first <i>.then()</i> with a success handler and both cases will be handled. <br>
+      <pre>
+
+  prom
+    .then((resolvedValue) => {
+      console.log(resolvedValue);
+    })
+    .then(null, (rejectionReason) => {
+      console.log(rejectionReason);
+    });
+      </pre>
+      Since JavaScript doesn't mind whitespace, we follow a common convention of putting each part of this chain on a new line to make it easier to read. To create even more readable code, we can use a promise function <i>.catch()</i>. <br>
+      <br>
+      The <i>.catch()</i> function takes only one argument, <i>onRejected</i>. Using <i>.catch()</i> accomplishes the same thing as using a <i>.then()</i> with only a failure handler. <br>
+      <pre>
+
+  prom
+    .then((resolvedValue) => {
+      console.log(resolvedValue);
+    })
+    .catch((rejectionReason) => {
+      console.log(rejectionReason);
+    });
+      </pre>
+      <hr>
+
+      Chaining Multiple Promises <br>
+      <br>
+      One common pattern we'll see with asunchronous programming is multiple operations which depend on each other to execute or that must be executed in a certain order. <br>
+      <br>
+      The process of chaining promises together ia called <i>composition</i>. <br>
+      <br>
+      Simple promise chain in code: <br>
+      <pre>
+
+  firstPromiseFunction()
+    .then((firstResolveVal) => {
+      return secondPromiseFunction(firstResolveVal);
+    })
+    .then((secondResolveVal) => {
+      console.log(secondResolveVal);
+    })
+      </pre>
+      In order for our chain to work properly, we had to <i>return</i> the promise <i>secondPromiseFunction(firstResolveVal)</i>. This ensured that the return value of the first <i>.then()</i> was our second promise rather that the default return of a new promise with the same settled value as the initial. <br>
+      <br>
+      Avoiding Common Mistakes <br>
+      <br>
+      Nestin promises instead of chaining them <br>
+      <pre>
+
+  returnFirstPromise()
+    .then((firstResolveVal) => {
+      return returnSecondValue(firstResolveVal)
+        .then((secondResolveVal) => {
+          console.log(secondResolveVal);
+        })
+    })
+
+  // Chain! Don't nest!
+      </pre>
+      Forgetting to <i>return</i> a promise. <br>
+      <pre>
+
+  returnFirstPromise()
+    .then((firstResolveVal) => {
+      returnSecondValue(firstResolveVal);
+    })
+    .then((someVal) => {
+      console.log(someVal);
+    })
+
+  // Remember to return promise to next .then()!
+      </pre>
+      If we forget to return new promise in our handler, the next <i>.then()</i> is invoked on a promise with the same setted value as the previous promise. <br>
+      <hr>
+
+      Using Promise.all() <br>
+      <br>
+      When we have multiple asunchronous operations with no depending on each other. All operations must be done and order doesn't matter. <br>
+      <br>
+      To maximize efficiency we should use <i>concurrency</i>, multiple asynchronous operations happening together. With promises, we can do this with the function <i>Promise.all()</i>. <br>
+      <br>
+      <i>Promise.all()</i> accepts an array of promises as its argument and returns a single promise. That single promise will settle in one of two ways: <br>
+      <br>
+      - If every promise in argument array resolves, the single promise returned from <i>Promise.all()</i> will resolve with an array containing the resolve value from each promise in argument array. <br>
+      <br>
+      - If any promise from the argument array rejects, the single promise returned from <i>Promise.all()</i> will immediately reject with the reason that promise rejected. This behavior is sometimes referred to as <i>falling fast</i>. <br>
+      <br>
+      Code example: <br>
+      <pre>
+
+  let myPromises = Promise.all([
+    returnsPromiseOne(),
+    returnsPromiseTwo(),
+    returnsPromiseThree()
+  ]);
+
+  myPromises
+    .then((arrayOfValues) => {
+      console.log(arraysOfValues);
+    })
+    .catch((rejectionReason) => {
+      console.log(rejectionReason);
+    });
+      </pre>
 
       <br>
       <hr>
