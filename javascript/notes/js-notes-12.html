@@ -11,7 +11,7 @@
   <body>
 
     <header>
-      JavaScript Notes 12
+      JavaScript Async Await
     </header>
 
     <nav>
@@ -29,6 +29,207 @@
     </nav>
 
     <main>
+
+      The async Keyword <br>
+      <br>
+      The <i>async</i> keyword is used to write functions that handle asynchronous actions. We wrap our asynchronous logic inside a function prepended with the <i>async</i> keyword. Then we invoke that function. <br>
+      <br>
+      <i>acync</i> function declaration:
+      <pre>
+
+  async function myFunc() {
+    // function body here
+  };
+
+  myFunc();
+      </pre>
+      <i>async</i> function expression: <br>
+      <pre>
+
+  const myFunc = async () => {
+    // function body here
+  };
+
+  myFunc();
+      </pre>
+      <i>async</i> functions always return a promise. This means we can use traditional promise syntax, like <i>.then</i> and <i>.catch</i> with our <i>async</i> functions. An <i>async</i> function will return in one of three ways: <br>
+      <br>
+      - If there's nothing returned from the function, it will return promise with a resolved value of <i>undefined</i>. <br>
+      <br>
+      - If there's a non-promise value returned from the function, it will return a promise resolved to that value. <br>
+      <br>
+      - If a promise is returned from the function, it will simply return that promise. <br>
+      <pre>
+
+  async function fivePromise() {
+    return 5;
+  }
+
+  fivePromise()
+    .then(resolvedValue => {
+      console.log(resolvedValue);
+    })
+      </pre>
+      <hr>
+
+      The await Operator <br>
+      <br>
+      The <i>await</i> keyword can only be used inside an <i>async</i> function. <i>await</i> is an operator: it returns the resolved value of a promise. Since promises resolve in an indeterminate amount of time, <i>await</i> halts, or pauses, the execution of our <i>async</i> function until a given promise is resolved. <br>
+      <pre>
+
+  async function asyncFuncExample() {
+    let resolvedValue = await myPromise();
+    console.log(resolvedValue);
+  }
+
+  asyncFuncExample();
+      </pre>
+      We're able to handle the logic for a promise in a way that reads like synchronous code. <br>
+      <hr>
+
+      Writing async Functions <br>
+      <br>
+      Let's write function, witch returns a promise that resolves to <i>'Yay, I resolved!'</i> after a 1 second delay: <br>
+      <pre>
+
+  const myPromise = () {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve('Yay, I resolved!')
+      }, 1000);
+    });
+  }
+      </pre>
+      Now we'll write async function which invoke <i>myPromise()</i>: <br>
+      <pre>
+
+  async function yesAwait() {
+    let value = await myPromise();
+    console.log(value);
+  }
+
+  yesAwait() ;
+  // Prints: Yay, I resolved!
+      </pre>
+      If we write similar async function witotut <i>await</i> operator, code will work, but otput will be different. <br>
+      <pre>
+
+  async function noAwait() {
+    let value = myPromise();
+    console.log(value);
+  }
+
+  noAwait();
+  // Prints: Promise { &ltpending> }
+      </pre>
+      It's important to remember await promise to resolve. <br>
+      <hr>
+
+      Handling Dependent Promises <br>
+      <br>
+      The true beauty of <i>async...await</i> is when we have a series of asynchronous actions witch depend on one another. <br>
+      <br>
+      With native promise syntax, we use a chain of <i>.then()</i> functions making sure to return correctly each one: <br>
+      <pre>
+
+  function nativePromiseVersion() {
+    returnsFirstPromise()
+      .then((firstValue) => {
+        console.log(firstValue);
+        return returnSecodPromise(firstValue);
+      })
+      .then((secondValue) => {
+        console.log(secondValue);
+      });
+  }
+      </pre>
+      Here's how we'd write an <i>async</i> function to accomplish the same thing. <br>
+      <pre>
+
+  async function asyncAwaitVersion() {
+    let firstValue = await returnsFirstPromise();
+    console.log(firstValue);
+    let secondValue = await returnsSecondPromise(firstValue);
+    console.log(secondValue);
+  }
+      </pre>
+      <hr>
+
+      Handling Erreors <br>
+      <br>
+      With <i>async...await</i>, we use <i>try...catch</i> statements for erroor handling. By using this syntax, not only are we able to handle errors in the same way we do with synchronous code, but we can also catch both synchronous and asynchronous errors. <br>
+      <pre>
+
+  async function usingTryCatch() {
+    try {
+      let resolveValue = await asyncFunction('things that will fail');
+      let secondValue = await secondAsyncFunction(resolvedValue);
+    } catch(err) {
+      // Catches any error in the try block
+      console.log(err);
+    }
+  }
+
+  usingTryCatch();
+      </pre>
+      Remember, since <i>async</i> functions return promises we can still use native promise's <i>.catch()</i> with an <i>async</i> function. <br>
+      <pre>
+
+  async function usingPromiseCatch() {
+    let resolveValue = await asyncFunction('thing that will fail');
+  }
+
+  let rejectedPromise = usingPromiseCatch();
+  rejectedPromise.catch((rejectedValue) => {
+    console.log(rejectedValue);
+  })
+      </pre>
+      This is sometimes used in the global scope to catch final errors in complex code. <br>
+      <hr>
+
+      Handling Independent Promises <br>
+      <br>
+      Remember that <i>await</i> halts the execution of our <i>async</i> function. This allows us to conveniently write synchronous-style code to handle dependent promises. But what if our <i>async</i> function contains multiple promises which are not dependent on the result of one another to execute? <br>
+      <pre>
+
+  async function waiting() {
+    const firstValue = await firstAsyncThing();
+    const secondValue = await secondAsyncThing();
+
+    console.log(firstValue, secondValue);
+  }
+
+  async function concurrent() {
+    const firstPromise = firstAsyncThing();
+    const secondPromise = secondAsyncThing();
+
+    console.log(await firstPromise, await secondPromise);
+  }
+      </pre>
+      Note: if we have multiple truly independent promises that we would like to execute fully in parallel, we must use individual <i>.then()</i> finctions and avoid halting our execution with <i>await</i>. <br>
+      <hr>
+
+      Await Promise.all() <br>
+      <br>
+      Another way to take advantage of concurrency when we have multiple promises which can be executed simultaneously is to <i>await</i> a <i>Promise.all()</i>. <br>
+      <br>
+      We can pass an array of promises as the argument to <i>Promise.all()</i>, and it will return a single promise. This promise will resolve when all of the promises in the argument array have resolved. This promise's resolve value will be an array containing the resolved values of each promise from the argument array. <br>
+      <pre>
+
+  async function asyncPromAll() {
+    const resultArray = await Promise.all([
+      asyncTask1(),
+      asyncTask2(),
+      asyncTask3(),
+      asuncTask4()
+    ]);
+
+    for (let i = 0; i < resultArray.length; i++) {
+      console.log(resultArray[i]);
+    }
+  }
+      </pre>
+      <i>Promise.all()</i> also has the benefit of <i>falling fast</i>, meaning it won't wait for the rest of the asynchronous actions to complete once any one has rejected. As soon as the first promise in the array rejects, the promise returned from <i>Promise.all()</i> will reject with that reason.
 
       <br>
       <hr>
