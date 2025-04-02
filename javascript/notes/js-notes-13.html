@@ -11,7 +11,7 @@
   <body>
 
     <header>
-      JavaScript Notes 13
+      JavaScript Request with Fetch API
     </header>
 
     <nav>
@@ -29,6 +29,85 @@
     </nav>
 
     <main>
+
+      fetch() GET Request <br>
+      <br>
+      <pre>
+
+  fetch('https://api-to-call.com/endpoint')
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error('Request failed!');
+    }, networkError => console.log(networkError.message)
+    ).then(jsonResponse => {
+      // code to execute with jsonResponse
+    });
+      </pre>
+      <br>
+      fetch() POST Request <br>
+      <br>
+      <pre>
+
+  fetch('https://api-to-call.com/endpoint', {
+    method: 'POST',
+    body: JSON.stpingify({id: '200'})
+  }).then(response => {
+    if (response.ok) {
+      return response.json();
+    }
+    throw new Error('Request failed!');
+  }, networkError => console.log(networkError.message)
+  ),then(jsonResponse => {
+    // code to execute with jsonResponse
+  })
+      </pre>
+      <hr>
+
+      Async GET Request <br>
+      <br>
+      <pre>
+
+  const getData = async () => {
+    try {
+      const response = await fetch('https://app-to-call.com/endpoint');
+      if (response.ok) {
+        const jsonResponse = await response.json();
+        // code to execute with jsonResponse
+      }
+      throw new Error('Request failed!');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+      </pre>
+      <br>
+      Async POST Request <br>
+      <br>
+      <pre>
+
+  const getData = async () => {
+    try {
+      const response = await fetch('https://app-to-call.com/endpoint', {
+        method: 'POST',
+        body: JSON.stringify({id: 200})
+      });
+      if (response.ok) {
+        const jsonResponse = await response.json();
+        // code to execute with jsonResponse
+      }
+      throw new Error('Request failed!');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+      </pre>
+      <br>
+      Datamuse API <br>
+      Rebrandly URL Shortener API <br>
+      <br>
+      XMLHttpRequest <br>
 
       <br>
       <hr>
