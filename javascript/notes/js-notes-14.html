@@ -11,7 +11,7 @@
   <body>
 
     <header>
-      JavaScript Notes 14
+      JavaScript Errors and Error Handling
     </header>
 
     <nav>
@@ -29,6 +29,93 @@
     </nav>
 
     <main>
+
+      Resources: <br>
+      <br>
+      <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors" target="_blank">MDN List of errors</a> <br>
+      <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects" target="_blank">Mozilla Documentation</a> <br>
+      <a href="https://stackoverflow.com/questions" target="_blank">Stack Overflow</a> <br>
+      <hr>
+
+      Debuging JavaScript code <br>
+      <br>
+      Three of seven most common built-in error types: <br>
+      <br>
+      - SyntaxError: Some typo in the code. <br>
+      - ReferenceError: Fault with variable or function declaration. <br>
+      - TypeError: If you attempt to perform an operation on a value of the wrong type. <br>
+      <br>
+      More info: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error" target="_blank">Mozilla docs built-in Errors</a> <br>
+      <br>
+      Silent Bugs <br>
+      <br>
+      Silent bugs don't throw errors but code doesn't work right. <br>
+      <br>
+      One of techniques to locate silent bugs is to add <i>console.log()</i> statements to the code to inspect program flow and content of variables. <br>
+      <br>
+      When you are fixing bugs, you may find some answers in the JavaScript documentation: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">MDN JavaScript Documentation</a> <br>
+      <br>
+      Another good way to find solutions is to <a href="https://www.google.com/" target="_blank">Google</a> things. <br>
+      <br>
+      Another good site to search information is <a href="https://stackoverflow.com/questions/51165/how-to-sort-strings-in-javascript" target="_blank">Stack Owerflow</a>. <br>
+      <br>
+      <hr>
+
+      debugger; <br>
+      <hr>
+
+      Error Handling <br>
+      <br>
+      In JavaScript, there are built-in error objects that have a <i>name</i> and <i>message</i> property. <br>
+      <br>
+      Creating or logging error will not stop running the program. <br>
+      <pre>
+
+  console.log(Error('Your password is too weak.'));
+  // Prints: Error: Your password is too weak.
+      </pre>
+      or <br>
+      <pre>
+
+  console.log(new Error('Your password is too weak.'));
+  // Prints: Error: Your password is too weak.
+      </pre>
+      The <i>throw</i> Keyword <br>
+      <br>
+      A thrown error will cause the program to stop running. <br>
+      <pre>
+
+  throw Error('Somethig wrong happend');
+  // Error: Something wrong happend
+      </pre>
+      The <i>try...catch</i> Statement <br>
+      <br>
+      In JavaScript, we use <i>try...catch</i> statement to anticipate and handle errors.  <br>
+      <pre>
+
+  try {
+    throw Error('This error will get caught');
+  } catch (e) {
+    console.log(e);
+  }
+  // Prints: Error: This error will get cought
+
+  console.log('Program runs after error handling');
+      </pre>
+      With this structure we can handle errors and keep program running. <br>
+      <br>
+      We can also use a <i>try...catch</i> statement to handle built-in errors that are thrown by the JavaScript engine. <br>
+      <pre>
+
+  const someVar = 'Cannot be reassigned';
+
+  try {
+    someVar = 'Still going to try';
+  } catch(e) {
+    console.log(e);
+  }
+  // Prints: TypeError: Assignment to constant varible.
+      </pre>
 
       <br>
       <hr>
