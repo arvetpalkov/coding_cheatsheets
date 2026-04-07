@@ -1,0 +1,121 @@
+* {
+  box-sizing: border-box;
+  font-family: monospace;
+}
+
+body {
+  background-color: lightgray;
+  margin: 0 auto;
+  padding: 0;
+  max-width: 1400px;
+  font-size: 16px;
+}
+
+header {
+  background-color: whitesmoke;
+  text-align: center;
+}
+
+header h1 {
+  text-transform: uppercase;
+  letter-spacing: 0.3rem;
+  margin: 0;
+  padding: 0.4rem;
+}
+
+header .menu {
+  background-color: black;
+  margin: 0;
+  padding: 0.4rem;
+}
+
+header .menu li {
+  display: inline-block;
+}
+
+header .menu a {
+  color: white;
+  padding: 0.4rem 0.8rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0.1rem;
+}
+
+header .menu a:hover {
+  background-color: gray;
+}
+
+main {
+  margin: 0 auto;
+  max-width: 800px;
+  background-color: whitesmoke;
+  padding-bottom: 2rem;
+}
+
+.breadcrumb {
+  background-color: whitesmoke;
+  margin: 0;
+  border-bottom: 2px solid lightgray;
+}
+
+.breadcrumb li {
+  display: inline-block;
+}
+
+.breadcrumb li::before {
+  color: gray;
+  content: "> ";
+}
+
+.breadcrumb a {
+  color: gray;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  color: black;
+}
+
+.link-buttons {
+  margin-top: 3rem;
+  padding: 0rem;
+}
+
+.link-buttons li {
+  list-style: none;
+  margin: 0.2em auto;
+}
+
+.link-buttons a {
+  display: block;
+  font-size: 1.4rem;
+  max-width: 20em;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  border: 2px solid gray;
+  margin: 0.4em auto;
+  padding: 0.2em;
+}
+
+.link-buttons a:hover {
+  background-color: lightgray;
+  font-weight: bolder;
+}
+
+.link-buttons a.disabled {
+  border: 2px solid lightgray;
+  background-color: transparent;
+  color: darkgray;
+  font-weight: normal;
+  cursor: default;
+}
+
+footer {
+  background-color: whitesmoke;
+  border-top: 3px solid lightgray;
+  color: gray;
+  text-align: center;
+  margin: 0;
+  padding: 0.4rem;
+}
