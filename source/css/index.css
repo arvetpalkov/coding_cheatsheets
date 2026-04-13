@@ -34,8 +34,10 @@ header h1 {
 
 header .menu {
   background-color: black;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
   margin: 0;
-  padding: 0.4rem;
+  padding: 0.3rem;
 }
 
 header .menu li {
@@ -44,7 +46,7 @@ header .menu li {
 
 header .menu a {
   color: white;
-  padding: 0.4rem 0.8rem;
+  padding: 0.3rem 0.8rem;
   text-transform: uppercase;
   text-decoration: none;
   letter-spacing: 0.1rem;
@@ -52,6 +54,11 @@ header .menu a {
 
 header .menu a:hover {
   background-color: gray;
+}
+
+header .menu a.active {
+  background-color: whitesmoke;
+  color: black;
 }
 
 main {
