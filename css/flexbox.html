@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS | Coding Ceatsheets</title>
+  <link rel="stylesheet" href="../source/css/index.css">
+</head>
+<body>
+
+    <!-- Header -->
+
+  <header>
+    <h2>Coding CheatSheets</h2>
+    <h1>Css | Flexbox</h1>
+    <nav>
+      <ul class="menu">
+        <li><a >Cli / Bash</a></li>
+        <li><a href="../git_and_github/git_and_github.html">Git & Github</a></li>
+        <li><a >Markdown</a></li>
+        <li><a >Html</a></li>
+        <li><a href="../css/css.html" class="active" >Css</a></li>
+        <li><a href="../javascript/javascript.html">JavaScript</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main -->
+
+  <main>
+
+     <!-- Breadcrumb menu -->
+
+    <ul class="breadcrumb">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../css/css.html">Css</a></li>
+      <li><a href="../css/layout.html">Layout</a></li>
+      <li><a href="../css/flexbox.html">Flexbox</a></li>
+    </ul>
+
+    <!-- Flexbox info -->
+
+    <div class="container">
+      <h2>Flexbox</h2>
+      <div>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Flexible_box_layout/Basic_concepts" target="_blank">MDN</a>
+        <a href="https://www.w3schools.com/css/css3_flexbox.asp" target="_blank">W3Schools</a>
+      </div>
+    </div>
+    <hr>
+
+    <h3>Flex container declaration</h3>
+
+    <pre>
+.container {
+  display: flex;
+}
+   </pre>
+   <pre>
+.container {
+  display: inline-flex;
+}
+   </pre>
+   <hr>
+
+   <h3>Flex direction</h3>
+
+   <pre>
+flex-direction: row;    /* default */
+   </pre>
+   <pre>
+flex-direction: row-rewerse;
+   </pre>
+   <pre>
+flex-direction: column;
+   </pre>
+   <pre>
+flex-direction: column-reverse;
+   </pre>
+   <hr>
+
+   <h3>Elements position along main axis</h3>
+
+   <pre>
+justify-content: flex-start;    /* default */
+   </pre>
+   <pre>
+justify-content: flex-end;
+   </pre>
+   <pre>
+justify-content: center;
+   </pre>
+   <pre>
+justify-content: space-around;
+   </pre>
+   <pre>
+justify-content: space-between;
+   </pre>
+   <hr>
+
+   <h3>Elements position along cross axis</h3>
+
+   <pre>
+align-items: flex-start;
+   </pre>
+   <pre>
+align-items: flex-end;
+   </pre>
+   <pre>
+align-items: ceter;
+   </pre>
+   <pre>
+align-items:baseline;
+   </pre>
+   <pre>
+align-items: stretch;    /* default */
+   </pre>
+   <hr>
+
+   <h3>Flex wrap</h3>
+
+   <pre>
+flex-wrap: nowrap;    /* default */
+   </pre>
+   <pre>
+flex-wrap: wrap;
+   </pre>
+   <pre>
+flex-wrap: wrap-revrse;
+   </pre>
+   <hr>
+
+   <h3>Multiple rows of content along cross axis</h3>
+
+   <pre>
+align-content: flex-start;
+   </pre>
+   <pre>
+align-content: flex-end;
+   </pre>
+   <pre>
+align-content: center;
+   </pre>
+   <pre>
+align-content: space-between;
+   </pre>
+   <pre>
+allign-content: space-around;
+   </pre>
+   <pre>
+align-content: stretch;    /* default */
+   </pre>
+   <hr>
+
+   <h3>Flex flow short hand</h3>
+
+   <span>Long hand code:</span>
+   <pre>
+flex-direction: column;
+flex-wrap: wrap;
+   </pre>
+   <span>Short hand code:</span>
+   <pre>
+flex-flow: column wrap;
+   </pre>
+   <hr><hr>
+
+   <h3>Flex item size</h3>
+
+   <pre>
+width: auto;    /* default */
+   </pre>
+   <pre>
+width: 200px;
+   </pre>
+   <pre>
+min-width: 150px;
+   </pre>
+   <pre>
+max-width: 300px;
+   </pre>
+   <pre>
+flex-basis: 200px;
+   </pre>
+   <hr>
+
+   <h3>Flex grow</h3>
+
+   <pre>
+flex-grow: 0;    /* no grow */  /* defaul */
+   </pre>
+   <pre>
+flex-grow: 1;
+   </pre>
+   <pre>
+flex-grow: 2;
+   </pre>
+   <hr>
+
+   <h3>Flex shrink</h3>
+
+   <pre>
+flex-shrink: 0;    /* no shrink */
+   </pre>
+   <pre>
+flex-shrink: 1;    /* default */
+   </pre>
+   <pre>
+flex-shrink: 2;
+   </pre>
+   <hr>
+
+   <h3>Flex short hand</h3>
+
+   <span>Long hand code:</span>
+   <pre>
+flex-grow: 2;
+flex-shrink: 1;
+flex-basis: 150px;
+   </pre>
+   <span>Short hand code:</span>
+   <pre>
+flex: 2 1 150px;
+   </pre>
+   <br>
+
+   <span>Long hand code:</span>
+   <pre>
+flex-grow: 2;
+flex-shrink: 1;
+   </pre>
+   <span>Short hand code:</span>
+   <pre>
+flex: 2 1;
+   </pre>
+   <br>
+
+   <span>Long hand code:</span>
+   <pre>
+flex-grow: 2;
+flex-basis: 150px;
+   </pre>
+   <span>Shiort hand code:</span>
+   <pre>
+flex: 2 150px;
+   </pre>
+   <hr>
+
+    <!-- Link buttons -->
+
+    <ul class="link-buttons">
+      <li><a href="../css/layout.html">&lt;&lt; Go to CSS Layout Menu</a></li>
+    </ul>
+
+  </main>
+
+    <!-- Footer -->
+
+  <footer>
+    Arvet Palkov 2026
+  </footer>
+    
+</body>
+</html>

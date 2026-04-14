@@ -65,7 +65,7 @@ main {
   margin: 0 auto;
   max-width: 800px;
   background-color: whitesmoke;
-  padding-bottom: 2rem;
+  padding:0rem 1rem 2rem;
 }
 
 .breadcrumb {
@@ -125,6 +125,18 @@ main {
   color: darkgray;
   font-weight: normal;
   cursor: default;
+}
+
+.container {
+  display:flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+pre {
+  background-color: gainsboro;
+  border: 2px solid lightgray;
+  padding: 1em 1em 0em;
 }
 
 footer {
