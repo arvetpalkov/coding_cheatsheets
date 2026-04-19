@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS | Coding Cheatsheets</title>
+  <link rel="stylesheet" href="../source/css/index.css">
+</head>
+<body>
+
+  <!-- Header -->
+
+  <header>
+    <h2>Codin Cheatsheets</h2>
+    <h1>Css | Grid</h1>
+    <nav>
+      <ul class="menu">
+        <li><a >Cli / Bash</a></li>
+        <li><a href="../git_and_github/git_and_github.html">Git & Github</a></li>
+        <li><a >Markdown</a></li>
+        <li><a >Html</a></li>
+        <li><a href="../css/css.html" class="active" >Css</a></li>
+        <li><a href="../javascript/javascript.html">JavaScript</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main -->
+
+  <main>
+
+    <!-- Breadcrumb menu -->
+
+    <ul class="breadcrumb">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../css/css.html">Css</a></li>
+      <li><a href="../css/layout.html">Layout</a></li>
+      <li><a href="../css/grid.html">Grid</a></li>
+    </ul>
+
+    <!-- Grid info -->
+    
+    <div class="container">
+      <h2>Grid</h2>
+      <div>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Grid_layout" target="_blank">MDN</a>
+        <a href="https://www.w3schools.com/cSS/css_grid.asp" target="_blank">W3Schools</a>
+      </div>
+    </div>
+    <hr>
+
+    <h3>Grid Container Declaration</h3>
+
+    <pre>
+display: grid;
+    </pre>
+    <pre>
+display: inline-grid;
+    </pre>
+    <hr>
+
+    <h3>Create Grid Columns</h3>
+
+    <pre>
+grid-template-columns:  1200px 200px;
+    </pre>
+    <pre>
+grid-template-columns: 10% 30% 40%;
+    </pre>
+    <pre>
+grid-template-columns: 1fr 3fr 1fr;
+    </pre>
+    <hr>
+
+    <h3>Create Grid Rows</h3>
+
+    <pre>
+grid-template-rows: 10% 20% 600px;
+    </pre>
+    <pre>
+grid-template-rows: 100px 1fr 1fr;
+    </pre>
+    <hr>
+
+    <h3>Grid-template shorthand</h3>
+
+    <span>Longhand code:</span>
+    <pre>
+grid-template-rows: 200px 300px;
+grid-template-columns: 20% 10% 70%;
+    </pre>
+    <span>Shorthand code:</span>
+    <pre>
+grid-template: 200px 300px / 20% 10% 70%;
+    </pre>
+    <hr>
+
+    <h3>Repeat function</h3>
+      
+    <pre>
+grid-template-columns: repeat(3, 100px);
+    </pre>
+    <pre>
+grid-template-columns: repeat(5, 1fr);
+    </pre>
+    <pre>
+grid-template-columns: repeat(2, 20px 50px);
+    </pre>
+    <hr>
+
+    <h3>Minmax function</h3>
+
+    <pre>
+grid-template-columns: 100px minmax(100px, 500px) 100px;
+    </pre>
+    <hr>
+
+    <h3>Grid Gap</h3>
+
+    <span>Longhand code:</span>
+    <pre>
+row-gap: 10px;
+column-gap: 20px;
+    </pre>
+    <span>Shorthand code:</span>
+    <pre>
+gap: 10px 20px;
+    </pre>
+    <br>
+    <span>Longhand code:</span>
+    <pre>
+row-gap: 15px;
+column-gap: 15px;
+    </pre>
+    <span>Shorthand code:</span>
+    <pre>
+gap: 15px;
+    </pre>
+    <br>
+    <span>Depricated code (do not use):</span>
+    <pre>
+grid-row-gap: ;
+grid-column-gap: ;
+grid-gap: ;
+    </pre>
+    <hr><hr>
+
+    <h3>Grid Item Manipulations</h3>
+    <hr>
+
+    <h3>Span Multiple Rows</h3>
+
+    <span>Longhand code:</span>
+    <pre>
+grid-row-start: 1;    /* included */
+grid-row-end: 3;    /* excluded */
+    </pre>
+    <span>Shorthand code:</span>
+    <pre>
+grid-row: 1 / 3;
+    </pre>
+    <br>
+    <span>Longhand code:</span>
+    <pre>
+grid-row-start: 1;
+grid-row-end: span 2;
+    </pre>
+    <span>Shorthand code:</span>
+    <pre>
+grid-row: 1 / span 2;
+    </pre>
+    <br>
+    <span>Longhand code:</span>
+    <pre>
+grid-row-start: span 2;
+grid-row-end: 3;
+    </pre>
+    <span>Shorthand code:</span>
+    <pre>
+grid-row: span 2 / 3;
+    </pre>
+    <hr>
+
+    <h3>Span Multiple Columns</h3>
+
+    <span>Longhand code:</span>
+    <pre>
+grid-column-start: 2;    /* included */
+grid-column-end: 5;    /* excluded */
+    </pre>
+    <span>Shorthand code:</span>
+    <pre>
+grid-column: 2 / 5;
+    </pre>
+    <br>
+    <span>Longhand code:</span>
+    <pre>
+grid-column-start: 2;
+grid-column-end: span 3;
+    </pre>
+    <span>Shorthand code:</span>
+    <pre>
+grid-column: 2 / span 3;
+    </pre>
+    <hr>
+
+    <h3>Grid Area</h3>
+
+    <span>Longhand code:</span>
+    <pre>
+grid-row-start: 2;
+grid-column-start: 3;
+grid-row-end: 4;
+grid-column-end: span 5;
+    </pre>
+    <span>Sorthand-code:</span>
+    <pre>
+grid-area: 2 / 3 / 4 / span 5;
+    </pre>
+    <hr>
+
+
+    <!-- Link buttons -->
+
+    <ul class="link-buttons">
+      <li><a href="../css/layout.html">&lt;&lt; Go to CSS Layout Menu</a></li>
+    </ul>
+
+  </main>
+
+  <!-- Footer -->
+
+  <footer>
+    Arvet Palkov 2026
+  </footer>
+  
+</body>
+</html>
