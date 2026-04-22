@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS | Coding Ceatsheets</title>
+  <link rel="stylesheet" href="../source/css/index.css">
+</head>
+<body>
+  
+  <!-- Header -->
+
+  <header>
+    <h2>Coding CheatSheets</h2>
+    <h1>Css | Responsive</h1>
+    <nav>
+      <ul class="menu">
+        <li><a >Cli / Bash</a></li>
+        <li><a href="../git_and_github/git_and_github.html">Git & Github</a></li>
+        <li><a >Markdown</a></li>
+        <li><a >Html</a></li>
+        <li><a href="../css/css.html" class="active" >Css</a></li>
+        <li><a href="../javascript/javascript.html">JavaScript</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main -->
+
+  <main>
+    
+     <!-- Breadcrumb menu -->
+
+    <ul class="breadcrumb">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../css/css.html">Css</a></li>
+      <li><a href="../css/layout.html">Layout</a></li>
+      <li><a href="../css/responsive.html">Respnsive</a></li>
+    </ul>
+
+    <!-- Responsive info -->
+
+    <div class="container">
+      <h2>Responsive Web Design</h2>
+      <div>
+        <a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Responsive_Design" target="_blank">MDN</a>
+        <a href="https://www.w3schools.com/css/css_rwd_intro.asp" target="_blank">W3Schools</a>
+      </div>
+    </div>
+    <hr>
+
+    <h3>Viewport Meta Tag</h3>
+
+    <pre>
+&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+    </pre>
+    <hr>
+
+    <h3>Root Element Font Size</h3>
+
+    <pre>
+html {
+  font-size: 16px;    /* default */
+}
+    </pre>
+    <hr>
+
+    <h3>Responsive Units</h3>
+
+    <pre>
+width: 50%;
+    </pre>
+    <pre>
+padding: 0.6em;
+    </pre>
+    <pre>
+font-size: 1.4rem;
+    </pre>
+    <hr>
+
+    <h3>Min and Max Dimensions</h3>
+
+    <pre>
+min-width: 300px;
+max-width: 600px;
+
+min-height: 150px;
+max-height: 300px;
+    </pre>
+    <hr>
+
+    <h3>Scaling Images and Videos</h3>
+
+    <pre>
+.container {
+  width: 50%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.container img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+    </pre>
+    <hr>
+
+    <h3>Scaling Background Images</h3>
+
+    <pre>
+body {
+  backgpound-image: url('#');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+    </pre>
+    <hr>
+
+    <h3>Media Queries</h3>
+
+    <pre>
+@media only screen and (max-width: 480px) {
+  /* ruleset for &lt;= 480px */
+}
+    </pre>
+    <pre>
+@media only screen and (min-width: 320px) {
+  /* ruleset for &gt;= 320px */
+}
+    </pre>
+    <pre>
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+  /* ruleset for 320px - 480px */
+}
+    </pre>
+    <pre>
+@media only screen and (min-width: 480px), (orientation: landscape) {
+  /* ruleset for &gt;= 480px or landscape orientated */
+}
+    </pre>
+    <hr>
+
+    <h3>Resolution</h3>
+
+    <div>dpi -- dots per inch</div>
+    <div>dpc -- dots per sentimeter</div>
+
+    <pre>
+@media only screen and (min-resolution: 300dpi) {
+  /* ruleset for high resolution screens */
+}
+    </pre>
+    <pre>
+@media only screen and (max-width: 480px) and (max-resolution: 150dpi) {
+  /* ruleset for smalls low resolution screens */
+}
+    </pre>
+    <hr>
+
+    <h3>Simulate Mobile Device</h3>
+
+    <ul class="link-buttons">
+      <li><a href="https://developer.chrome.com/docs/devtools/device-mode" target="_blank">Crome for Developers</a></li>
+    </ul>
+    <hr>
+
+    <!-- Link buttons -->
+
+    <ul class="link-buttons">
+      <li><a href="../css/layout.html">&lt;&lt; Go to CSS Layout Menu</a></li>
+    </ul>
+
+  </main>
+
+  <!-- Footer -->
+
+  <footer>
+    Arvet Palkov 2026
+  </footer>
+
+</body>
+</html>
